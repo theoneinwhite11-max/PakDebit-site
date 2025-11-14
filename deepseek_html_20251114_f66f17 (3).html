@@ -1,0 +1,2588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PakDebit - Modern Islamic Banking for Pakistan | Riba-Free Digital Banking</title>
+    <meta name="description" content="Pakistan's premier Riba-free digital banking platform. Experience ethical banking with zero interest, global transfers, and premium rewards.">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+            --card-bg: #1a1a1a;
+            --accent-gold: #FFD700;
+            --accent-gold-light: #FFEC8B;
+            --accent-gold-dark: #daa520;
+            --white: #ffffff;
+            --light-gray: #e0e0e0;
+            --medium-gray: #a0a0a0;
+            --text-color: #9190a3;
+            --subheading-color: #f5f5f5;
+            --gradient-primary: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #050505 100%);
+            --gradient-gold: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dark));
+            --gradient-text: linear-gradient(to right, var(--accent-gold), var(--accent-gold-light));
+            --shadow-glow: 0 0 20px rgba(255, 215, 0, 0.3);
+            --transition-smooth: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            overflow-x: hidden;
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--white);
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        p, li, span {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        /* SIGNIFICANTLY INCREASED PARAGRAPH AND SECTION SPACING */
+        p {
+            margin-bottom: 3rem !important; /* Increased from ~1rem to 3rem */
+        }
+
+        .section-title p {
+            margin-bottom: 4rem !important; /* Increased for section titles */
+        }
+
+        .hero p {
+            margin-bottom: 3rem !important; /* Increased for hero section */
+        }
+
+        .feature p, .service-card p, .partner-card p, .review-text {
+            margin-bottom: 2rem !important; /* Increased for cards */
+        }
+
+        .about-content p, .riba-content p, .transfer-content p, .cashback p, .mission-section p {
+            margin-bottom: 3rem !important; /* Increased for content sections */
+        }
+
+        /* Enhanced Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .loading-logo h1 {
+            font-size: 5rem; /* Increased size */
+            font-weight: 900;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .loading-text {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        .loading-slogan {
+            color: var(--accent-gold);
+            font-size: 1rem; /* Small text for loading screen */
+            margin-bottom: 2rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .loading-progress {
+            width: 300px;
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .loading-progress-bar {
+            height: 100%;
+            background: var(--gradient-gold);
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 3px;
+        }
+
+        .loading-dots {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .loading-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--accent-gold);
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .loading-dot:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { 
+                transform: scale(0);
+            } 40% { 
+                transform: scale(1.0);
+            }
+        }
+
+        .loading-security {
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--medium-gray);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .loading-security i {
+            color: var(--accent-gold);
+        }
+
+        /* Enhanced Header */
+        header {
+            background-color: rgba(5, 5, 5, 0.95);
+            color: var(--white);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            animation: slideDown 0.8s ease-out;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-gold);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--dark-bg);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .logo-icon:hover {
+            transform: rotate(15deg) scale(1.1);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .logo h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            transition: var(--transition-smooth);
+        }
+
+        .logo:hover h1 {
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--gradient-gold);
+            transition: width 0.3s;
+        }
+
+        nav a:hover:after {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.7s;
+            z-index: -1;
+        }
+
+        .btn:hover:before {
+            left: 100%;
+        }
+
+        .btn-login {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--accent-gold);
+        }
+
+        .btn-login:hover {
+            background-color: var(--accent-gold);
+            color: var(--dark-bg);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .btn-signup {
+            background: var(--gradient-gold);
+            color: var(--dark-bg);
+        }
+
+        .btn-signup:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
+            background: linear-gradient(135deg, #ffea00, #ffb347);
+        }
+
+        /* Enhanced Hero Section */
+        .hero {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 14rem 2rem 10rem; /* Increased padding */
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero::before, .hero::after, .hero-bg-circle {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1), transparent);
+            opacity: 0.15;
+            z-index: 0;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::before {
+            width: 600px;
+            height: 600px;
+            top: -300px;
+            right: -150px;
+            animation-delay: 0s;
+        }
+
+        .hero::after {
+            width: 400px;
+            height: 400px;
+            bottom: -200px;
+            left: -100px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1), transparent);
+            animation-delay: 2s;
+        }
+
+        .hero-bg-circle {
+            width: 300px;
+            height: 300px;
+            top: 50%;
+            left: 10%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1), transparent);
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 4.5rem;
+            margin-bottom: 2.5rem; /* Increased */
+            line-height: 1.2;
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(to right, var(--white), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-slogan {
+            font-size: 2.5rem; /* Large and bold for hero section */
+            font-weight: 900;
+            margin-bottom: 2rem;
+            color: var(--accent-gold);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto 3rem; /* Increased */
+            line-height: 1.6;
+            font-weight: 500;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-subtitle {
+            font-size: 2rem;
+            margin-bottom: 4rem; /* Increased */
+            color: var(--subheading-color);
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .security-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            margin-top: 2rem; /* Increased */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            animation: fadeInUp 1s ease-out 0.6s both;
+            transition: var(--transition-smooth);
+        }
+
+        .security-badge:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-glow);
+            border-color: var(--accent-gold);
+        }
+
+        .security-badge i {
+            color: var(--accent-gold);
+            font-size: 1.5rem;
+        }
+
+        .security-badge span {
+            font-weight: 600;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 3rem; /* Increased */
+            margin-top: 6rem; /* Increased */
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 3rem 2.5rem; /* Increased */
+            border-radius: 20px;
+            max-width: 350px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            transition: var(--transition-smooth);
+            text-align: left;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .feature:nth-child(1) { animation-delay: 0.8s; }
+        .feature:nth-child(2) { animation-delay: 1s; }
+        .feature:nth-child(3) { animation-delay: 1.2s; }
+
+        .feature:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), var(--shadow-glow);
+            border-color: var(--accent-gold);
+        }
+
+        .feature h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem; /* Increased */
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature h3 i {
+            color: var(--accent-gold);
+            transition: transform 0.5s ease;
+        }
+
+        .feature:hover h3 i {
+            transform: rotate(360deg) scale(1.2);
+        }
+
+        /* Enhanced Services Section */
+        .services {
+            padding: 10rem 2rem; /* Increased */
+            background-color: var(--darker-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 6rem; /* Increased */
+        }
+
+        .section-title h2 {
+            font-size: 3.5rem;
+            color: var(--white);
+            margin-bottom: 2rem; /* Increased */
+            font-weight: 900;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-gold);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            max-width: 800px;
+            margin: 0 auto 4rem; /* Increased */
+            line-height: 1.8;
+            font-weight: 500;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.3px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem; /* Increased */
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 3rem 2.5rem; /* Increased */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: var(--transition-smooth);
+            border-top: 5px solid var(--accent-gold);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .service-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transition: left 0.7s;
+        }
+
+        .service-card:hover:before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), var(--shadow-glow);
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem; /* Increased */
+            color: var(--white);
+            font-weight: 800;
+        }
+
+        .service-card p {
+            color: var(--text-color);
+            line-height: 1.7;
+            font-size: 1.1rem;
+            font-weight: 500;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 2rem; /* Increased */
+            color: var(--accent-gold);
+            display: inline-block;
+            transition: var(--transition-smooth);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.3) rotate(10deg);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+        }
+
+        /* Enhanced Payment Partners */
+        .payment-partners {
+            padding: 8rem 2rem; /* Increased */
+            background-color: var(--dark-bg);
+        }
+
+        .partners-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .partners-container h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 2rem; /* Increased */
+        }
+
+        .partners-container p {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 4rem; /* Increased */
+        }
+
+        .partners-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem; /* Increased */
+            margin-top: 4rem; /* Increased */
+            flex-wrap: wrap;
+        }
+
+        .partner-logo {
+            background-color: var(--card-bg);
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            width: 180px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.4rem;
+            color: var(--white);
+            transition: var(--transition-smooth);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partner-logo:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transition: left 0.7s;
+        }
+
+        .partner-logo:hover:before {
+            left: 100%;
+        }
+
+        .partner-logo:hover {
+            transform: scale(1.1) rotate(2deg);
+            border-color: var(--accent-gold);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), var(--shadow-glow);
+        }
+
+        /* Enhanced Sponsors Section */
+        .sponsors {
+            padding: 8rem 2rem; /* Increased */
+            background-color: var(--darker-bg);
+        }
+
+        .sponsors-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .sponsors-container h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 2rem; /* Increased */
+        }
+
+        .sponsors-container p {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 4rem; /* Increased */
+        }
+
+        .sponsors-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem; /* Increased */
+            margin-top: 4rem; /* Increased */
+            flex-wrap: wrap;
+        }
+
+        .sponsor-logo {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            width: 200px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.8;
+            transition: var(--transition-smooth);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sponsor-logo:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transition: left 0.7s;
+        }
+
+        .sponsor-logo:hover:before {
+            left: 100%;
+        }
+
+        .sponsor-logo:hover {
+            opacity: 1;
+            border-color: var(--accent-gold);
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), var(--shadow-glow);
+        }
+
+        .sponsor-logo img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /* Enhanced Cashback Section */
+        .cashback {
+            padding: 10rem 2rem; /* Increased */
+            background: linear-gradient(135deg, var(--darker-bg), #111);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cashback-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cashback h2 {
+            font-size: 3.5rem;
+            margin-bottom: 3rem; /* Increased */
+            font-weight: 900;
+        }
+
+        /* Enhanced International Transfer Section */
+        .international-transfer {
+            padding: 10rem 2rem; /* Increased */
+            background-color: var(--dark-bg);
+        }
+
+        .transfer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 5rem; /* Increased */
+        }
+
+        .transfer-content {
+            flex: 1;
+        }
+
+        .transfer-content h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 2rem; /* Increased */
+        }
+
+        .transfer-content ul {
+            margin-top: 2rem; /* Added */
+        }
+
+        .transfer-content ul li {
+            margin-bottom: 1rem; /* Increased */
+            font-weight: 500;
+        }
+
+        .transfer-visual {
+            flex: 1;
+            background: var(--gradient-gold);
+            height: 350px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-bg);
+            font-size: 1.8rem;
+            font-weight: bold;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .transfer-visual:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.7s;
+        }
+
+        .transfer-visual:hover:before {
+            transform: rotate(45deg) translate(50%, 50%);
+        }
+
+        .transfer-visual:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), var(--shadow-glow);
+        }
+
+        /* Enhanced Riba-Free Section */
+        .riba-free {
+            padding: 10rem 2rem; /* Increased */
+            background-color: var(--darker-bg);
+        }
+
+        .riba-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 5rem; /* Increased */
+        }
+
+        .riba-visual {
+            flex: 1;
+            background: linear-gradient(135deg, #daa520, var(--accent-gold));
+            height: 350px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-bg);
+            font-size: 1.8rem;
+            font-weight: bold;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .riba-visual:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.7s;
+        }
+
+        .riba-visual:hover:before {
+            transform: rotate(45deg) translate(50%, 50%);
+        }
+
+        .riba-visual:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), var(--shadow-glow);
+        }
+
+        .riba-content {
+            flex: 1;
+        }
+
+        .riba-content h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 2rem; /* Increased */
+        }
+
+        .riba-content ul {
+            margin-top: 2rem; /* Added */
+        }
+
+        .riba-content ul li {
+            margin-bottom: 1rem; /* Increased */
+            font-weight: 500;
+        }
+
+        /* Enhanced Page Content */
+        .page-content {
+            display: none;
+            padding: 12rem 2rem 6rem; /* Increased */
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        .page-title {
+            font-size: 3.5rem;
+            color: var(--white);
+            margin-bottom: 4rem; /* Increased */
+            text-align: center;
+            font-weight: 900;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .page-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-gold);
+            border-radius: 2px;
+        }
+
+        /* Enhanced About Page */
+        .about-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin: 4rem 0 2rem; /* Increased */
+            color: var(--white);
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 0.8rem; /* Increased */
+            font-weight: 800;
+        }
+
+        .about-content ul {
+            margin-bottom: 3rem; /* Added */
+        }
+
+        .about-content ul li {
+            margin-bottom: 1.5rem; /* Increased */
+            font-weight: 500;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem; /* Increased */
+            margin-top: 4rem; /* Increased */
+        }
+
+        .partner-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 2.5rem; /* Increased */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            border-left: 4px solid var(--accent-gold);
+            transition: var(--transition-smooth);
+        }
+
+        .partner-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), var(--shadow-glow);
+        }
+
+        .partner-card h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem; /* Increased */
+        }
+
+        /* Enhanced Cards Page */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem; /* Increased */
+            margin-top: 4rem; /* Increased */
+        }
+
+        .card {
+            background: linear-gradient(135deg, var(--card-bg), #222);
+            border-radius: 20px;
+            padding: 3rem; /* Increased */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.03);
+            border-color: var(--accent-gold);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), var(--shadow-glow);
+        }
+
+        .card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+        }
+
+        .card.standard:before {
+            background: linear-gradient(to right, #a0a0a0, #c0c0c0);
+        }
+
+        .card.premium:before {
+            background: var(--gradient-gold);
+        }
+
+        .card.gold:before {
+            background: linear-gradient(to right, #d4af37, var(--accent-gold));
+        }
+
+        .card h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem; /* Increased */
+            color: var(--white);
+            font-weight: 800;
+        }
+
+        .card .price {
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin: 2rem 0; /* Increased */
+            color: var(--accent-gold);
+            transition: var(--transition-smooth);
+        }
+
+        .card:hover .price {
+            transform: scale(1.1);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .card ul {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 3rem; /* Increased */
+        }
+
+        .card ul li {
+            margin-bottom: 1.2rem; /* Increased */
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover ul li {
+            transform: translateX(5px);
+        }
+
+        .card ul li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        /* Enhanced Reviews Page */
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem; /* Increased */
+            margin-top: 4rem; /* Increased */
+        }
+
+        .review-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 3rem; /* Increased */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: var(--transition-smooth);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .review-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .review-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), var(--shadow-glow);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem; /* Increased */
+        }
+
+        .review-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%; /* Fixed: Now perfectly round */
+            background: var(--gradient-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-bg);
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-right: 1.5rem;
+            transition: var(--transition-smooth);
+            flex-shrink: 0; /* Prevent distortion */
+        }
+
+        .review-card:hover .review-avatar {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .review-info h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem; /* Increased */
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .review-info p {
+            color: var(--medium-gray);
+            font-weight: 500;
+        }
+
+        .mission-section {
+            margin-top: 8rem; /* Increased */
+            padding: 6rem; /* Increased */
+            background: linear-gradient(135deg, var(--darker-bg), #111);
+            color: var(--white);
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            transition: var(--transition-smooth);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .mission-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mission-section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), var(--shadow-glow);
+        }
+
+        .mission-section h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem; /* Increased */
+            font-weight: 900;
+        }
+
+        .mission-section ul {
+            margin: 2rem 0 3rem; /* Increased */
+            text-align: left;
+            max-width: 900px;
+            margin: 2rem auto 3rem; /* Increased */
+            line-height: 1.8;
+            font-size: 1.2rem;
+        }
+
+        .mission-section ul li {
+            margin-bottom: 1.5rem; /* Increased */
+            font-weight: 500;
+        }
+
+        /* Enhanced Auth Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            padding: 3rem; /* Increased */
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            animation: modalSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes modalSlideIn {
+            from { transform: scale(0.8) translateY(-50px); opacity: 0; }
+            to { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--light-gray);
+            transition: var(--transition-smooth);
+        }
+
+        .close-modal:hover {
+            color: var(--accent-gold);
+            transform: rotate(90deg) scale(1.2);
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 3rem; /* Increased */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .auth-tab {
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--light-gray);
+            border-bottom: 3px solid transparent;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            transition: var(--transition-smooth);
+        }
+
+        .auth-tab.active {
+            color: var(--accent-gold);
+            border-bottom: 3px solid var(--accent-gold);
+        }
+
+        .auth-tab:hover:not(.active) {
+            color: var(--white);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .form-group {
+            margin-bottom: 2rem; /* Increased */
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem; /* Increased */
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--light-gray);
+            font-size: 1.1rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Open Sans', sans-serif;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--light-gray);
+            font-weight: 500;
+            transition: var(--transition-smooth);
+        }
+
+        .form-group input:focus {
+            border-color: var(--accent-gold);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient-gold);
+            color: var(--dark-bg);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-submit:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s;
+        }
+
+        .btn-submit:hover:before {
+            left: 100%;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.5);
+            background: linear-gradient(135deg, #ffea00, #ffb347);
+        }
+
+        /* Enhanced Footer */
+        footer {
+            background-color: var(--darker-bg);
+            color: var(--white);
+            padding: 6rem 2rem 3rem; /* Increased */
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 4rem; /* Increased */
+        }
+
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 2rem; /* Increased */
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--gradient-gold);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 1.2rem; /* Increased */
+        }
+
+        .footer-column a {
+            color: var(--medium-gray);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .footer-column a:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: width 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent-gold);
+            padding-left: 5px;
+        }
+
+        .footer-column a:hover:after {
+            width: 100%;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 6rem; /* Increased */
+            padding-top: 3rem; /* Increased */
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--medium-gray);
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 500;
+        }
+
+        /* Enhanced Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-gold);
+            color: var(--dark-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: var(--transition-smooth);
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Enhanced Particle Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 215, 0, 0.3);
+            border-radius: 50%;
+            animation: floatParticle 15s infinite linear;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Enhanced Responsive Design */
+        @media (max-width: 1024px) {
+            .hero h2 {
+                font-size: 3.8rem;
+            }
+            
+            .hero-slogan {
+                font-size: 2.2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            
+            .transfer-container, .riba-container {
+                gap: 3rem; /* Increased */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1.5rem; /* Increased */
+            }
+
+            nav ul {
+                gap: 1.5rem; /* Increased */
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 12rem 1rem 8rem; /* Increased */
+            }
+
+            .hero h2 {
+                font-size: 3rem;
+            }
+
+            .hero-slogan {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .features {
+                flex-direction: column;
+                align-items: center;
+                gap: 2.5rem; /* Adjusted */
+            }
+
+            .transfer-container, .riba-container {
+                flex-direction: column;
+                gap: 3rem; /* Increased */
+            }
+
+            .partners-logos, .sponsors-logos {
+                gap: 2.5rem; /* Adjusted */
+            }
+
+            .partner-logo {
+                width: 140px;
+                height: 80px;
+                font-size: 1.2rem;
+            }
+
+            .sponsor-logo {
+                width: 150px;
+                height: 90px;
+            }
+            
+            .page-content {
+                padding: 10rem 1rem 4rem; /* Increased */
+            }
+            
+            .cards-container {
+                grid-template-columns: 1fr;
+                gap: 3rem; /* Adjusted */
+            }
+            
+            .reviews-container {
+                grid-template-columns: 1fr;
+                gap: 2.5rem; /* Adjusted */
+            }
+            
+            .mission-section {
+                padding: 4rem; /* Adjusted */
+                margin-top: 6rem; /* Adjusted */
+            }
+            
+            .loading-logo h1 {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-slogan {
+                font-size: 1.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.6rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+            
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .feature {
+                padding: 2rem; /* Adjusted */
+            }
+            
+            .service-card {
+                padding: 2rem; /* Adjusted */
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 3rem; /* Adjusted */
+            }
+            
+            .modal-content {
+                padding: 2rem; /* Adjusted */
+            }
+            
+            .loading-logo h1 {
+                font-size: 3rem;
+            }
+            
+            .loading-slogan {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">
+            <h1>PakDebit</h1>
+        </div>
+        <div class="loading-text">Securing Your Financial Future</div>
+        <div class="loading-slogan">Secure Banking for All</div>
+        <div class="loading-progress">
+            <div class="loading-progress-bar" id="loadingProgress"></div>
+        </div>
+        <div class="loading-dots">
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+        </div>
+        <div class="loading-security">
+            <i class="fas fa-shield-alt"></i>
+            <span>Bank-Grade Security & Encryption</span>
+        </div>
+    </div>
+    
+    <!-- Particle Background -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Scroll to Top Button -->
+    <div class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon"></div>
+                <h1>PakDebit</h1>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="about">About Us</a></li>
+                    <li><a href="#" class="nav-link" data-page="cards">Cards & Pricing</a></li>
+                    <li><a href="#" class="nav-link" data-page="reviews">Reviews & Mission</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button class="btn btn-login" id="loginBtn">Login</button>
+                <button class="btn btn-signup" id="signupBtn">Sign Up</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <section class="page-content active" id="home-page">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-container">
+                <h2>Revolutionizing Banking in Pakistan</h2>
+                <div class="hero-slogan">Secure Banking for All</div>
+                <p class="hero-subtitle">0% Riba • Lowest International Transfer Fees • Fastest Transactions</p>
+                <p>Experience the future of ethical banking with PakDebit - where modern technology meets Islamic financial principles. Enjoy seamless transactions, competitive returns, and unparalleled customer service.</p>
+                
+                <div class="security-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Advanced Privacy Protection & Security</span>
+                </div>
+                
+                <div class="features">
+                    <div class="feature">
+                        <h3><i class="fas fa-coins"></i> Zero Riba Banking</h3>
+                        <p>All our financial products are completely free from interest, in strict compliance with Islamic banking principles and certified by our Sharia Advisory Board.</p>
+                    </div>
+                    <div class="feature">
+                        <h3><i class="fas fa-globe-americas"></i> Global Transfers</h3>
+                        <p>Send money anywhere in the world with the lowest fees and fastest processing times in Pakistan. Save up to 70% compared to traditional banks.</p>
+                    </div>
+                    <div class="feature">
+                        <h3><i class="fas fa-gem"></i> Premium Rewards</h3>
+                        <p>Earn up to 3% cashback on special events and exclusive rewards on our Gold tier cards. Plus airport lounge access and travel insurance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rest of the website content remains the same -->
+        <!-- Payment Partners -->
+        <section class="payment-partners">
+            <div class="partners-container">
+                <h2>Supported by Major Payment Networks</h2>
+                <p>Our cards are accepted worldwide through partnerships with leading payment networks</p>
+                <div class="partners-logos">
+                    <div class="partner-logo">Visa</div>
+                    <div class="partner-logo">MasterCard</div>
+                    <div class="partner-logo">PayPak</div>
+                    <div class="partner-logo">UnionPay</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services" id="services">
+            <div class="section-title">
+                <h2>Our Comprehensive Banking Solutions</h2>
+                <p>Discover a wide range of services designed to meet all your financial needs with ethical principles. Our innovative banking solutions combine modern technology with Islamic financial values to provide you with a seamless and rewarding banking experience.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💳</div>
+                    <h3>Digital Banking</h3>
+                    <p>Manage your finances anytime, anywhere with our secure mobile and online banking platforms with advanced security features. Access your accounts, transfer funds, pay bills, and more with just a few taps.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌍</div>
+                    <h3>International Transfers</h3>
+                    <p>Send money abroad with minimal fees and maximum speed. Our rates are up to 50% lower than traditional banks, with real-time tracking and 24/7 customer support for all your international banking needs.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💰</div>
+                    <h3>Savings Accounts</h3>
+                    <p>Grow your savings with our Riba-free investment accounts that provide competitive returns through profit-sharing. Our savings products are designed to help you achieve your financial goals while adhering to Islamic principles.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏦</div>
+                    <h3>Business Banking</h3>
+                    <p>Tailored solutions for businesses of all sizes with dedicated relationship managers and Sharia-compliant financing. From startup accounts to corporate services, we support your business growth ethically.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Mobile Wallet</h3>
+                    <p>Send and receive money instantly with our digital wallet, pay bills, and make purchases with just a few taps. Our mobile wallet offers convenience and security for all your daily financial transactions.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛡️</div>
+                    <h3>Insurance Takaful</h3>
+                    <p>Protect what matters most with our Sharia-compliant insurance products for life, health, and property. Our Takaful solutions provide financial security while adhering to Islamic principles of mutual cooperation.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- International Transfer Section -->
+        <section class="international-transfer">
+            <div class="transfer-container">
+                <div class="transfer-content">
+                    <h2>Fastest International Money Transfers</h2>
+                    <p>With PakDebit, send money to over 50 countries with fees up to 70% lower than traditional banks. Our advanced technology ensures your funds reach their destination in record time, often within minutes.</p>
+                    <p>Whether you're supporting family abroad or conducting international business, our transparent pricing and real-time tracking give you complete peace of mind.</p>
+                    <ul>
+                        <li>Transfer to over 50 countries</li>
+                        <li>Fees up to 70% lower than competitors</li>
+                        <li>Real-time tracking and notifications</li>
+                        <li>24/7 customer support</li>
+                    </ul>
+                </div>
+                <div class="transfer-visual">
+                    Global Transfer Network
+                </div>
+            </div>
+        </section>
+
+        <!-- Riba-Free Section -->
+        <section class="riba-free">
+            <div class="riba-container">
+                <div class="riba-visual">
+                    Riba-Free Banking
+                </div>
+                <div class="riba-content">
+                    <h2>100% Sharia-Compliant Banking</h2>
+                    <p>At PakDebit, we're committed to providing financial solutions that align with Islamic principles. Our products are carefully structured to avoid Riba (interest) and ensure ethical investment practices.</p>
+                    <p>All our banking operations are supervised by a dedicated Sharia Advisory Board comprising renowned Islamic scholars and finance experts.</p>
+                    <ul>
+                        <li>Certified Sharia-compliant products</li>
+                        <li>Transparent profit-sharing models</li>
+                        <li>Ethical investment screening</li>
+                        <li>Regular Sharia compliance audits</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sponsors Section -->
+        <section class="sponsors">
+            <div class="sponsors-container">
+                <h2>Trusted by Leading Organizations</h2>
+                <p>We're proud to partner with these respected institutions</p>
+                <div class="sponsors-logos">
+                    <div class="sponsor-logo">State Bank of Pakistan</div>
+                    <div class="sponsor-logo">Karachi Chamber</div>
+                    <div class="sponsor-logo">Pakistan Banking Association</div>
+                    <div class="sponsor-logo">Islamic Finance Board</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cashback Section -->
+        <section class="cashback">
+            <div class="cashback-container">
+                <h2>Exclusive Rewards & Cashback</h2>
+                <p>Enjoy up to 3% cashback on special events and festivals with our premium cards. Our Gold card members receive exceptional benefits including additional rewards points on all international transactions.</p>
+                <p>During Ramadan, Eid, and other major celebrations, earn enhanced cashback on dining, shopping, and travel. Plus, our loyalty program allows you to redeem points for travel, merchandise, or statement credits.</p>
+            </div>
+        </section>
+    </section>
+
+    <!-- The rest of the HTML remains the same as before -->
+    <!-- About Us Page -->
+    <section class="page-content" id="about-page">
+        <h1 class="page-title">About PakDebit</h1>
+        <div class="about-content">
+            <h2>Our Story</h2>
+            <p>PakDebit was founded in 2023 with a vision to revolutionize banking in Pakistan by offering Sharia-compliant financial services that combine modern technology with ethical principles. Our journey began when our founders recognized the need for a banking institution that could serve the growing population of Pakistanis seeking Riba-free financial solutions without compromising on convenience or accessibility.</p>
+            
+            <p>From our humble beginnings with just one branch in Karachi, we've expanded to over 50 branches across Pakistan, serving more than 500,000 customers. Our commitment to innovation has led us to develop Pakistan's first completely digital Riba-free banking platform.</p>
+            
+            <h2>Our Mission</h2>
+            <p>To provide accessible, ethical, and innovative banking solutions that empower individuals and businesses across Pakistan to achieve their financial goals while adhering to Islamic financial principles.</p>
+            
+            <h2>Our Values</h2>
+            <p>At PakDebit, we are guided by four core values:</p>
+            <ul>
+                <li><strong>Integrity:</strong> We conduct all our operations with transparency and honesty, ensuring complete compliance with Islamic banking principles.</li>
+                <li><strong>Innovation:</strong> We continuously invest in cutting-edge technology to provide our customers with seamless banking experiences.</li>
+                <li><strong>Inclusivity:</strong> We believe banking should be accessible to all Pakistanis, regardless of their location or financial status.</li>
+                <li><strong>Excellence:</strong> We strive for excellence in every aspect of our service, from customer support to financial products.</li>
+            </ul>
+            
+            <h2>Our Partners</h2>
+            <p>We're proud to collaborate with leading organizations to bring you the best banking experience:</p>
+            
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <h3>State Bank of Pakistan</h3>
+                    <p>Fully licensed and regulated by the central bank of Pakistan, ensuring the highest standards of security and compliance.</p>
+                </div>
+                <div class="partner-card">
+                    <h3>Islamic Finance Board</h3>
+                    <p>Our Sharia Advisory Board ensures all products comply with Islamic financial principles.</p>
+                </div>
+                <div class="partner-card">
+                    <h3>Pakistan Banking Association</h3>
+                    <p>Active member promoting ethical banking practices across Pakistan.</p>
+                </div>
+                <div class="partner-card">
+                    <h3>Karachi Chamber of Commerce</h3>
+                    <p>Strategic partnership to support business banking and economic growth.</p>
+                </div>
+            </div>
+            
+            <h2>Our Achievements</h2>
+            <p>In just a short period, PakDebit has achieved remarkable milestones:</p>
+            <ul>
+                <li>Served over 500,000 customers across Pakistan</li>
+                <li>Processed over PKR 50 billion in transactions</li>
+                <li>Expanded to 50+ cities nationwide</li>
+                <li>Launched the first completely Riba-free digital banking platform in Pakistan</li>
+                <li>Received the "Best New Banking Innovation" award at the Pakistan Banking Awards 2023</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Cards & Pricing Page -->
+    <section class="page-content" id="cards-page">
+        <h1 class="page-title">Our Card Options</h1>
+        <p style="text-align: center; margin-bottom: 4rem; font-size: 1.3rem;">Choose the perfect card for your lifestyle and financial needs</p>
+        
+        <div class="cards-container">
+            <div class="card standard">
+                <h3>Standard Card</h3>
+                <div class="price">PKR 500/year</div>
+                <ul>
+                    <li>Free domestic ATM withdrawals</li>
+                    <li>Online banking access</li>
+                    <li>Mobile app with basic features</li>
+                    <li>1% cashback on utility bills</li>
+                    <li>Customer support 9 AM - 5 PM</li>
+                    <li>Basic fraud protection</li>
+                </ul>
+                <button class="btn btn-signup">Apply Now</button>
+            </div>
+            
+            <div class="card premium">
+                <h3>Premium Card</h3>
+                <div class="price">PKR 1,200/year</div>
+                <ul>
+                    <li>All Standard features</li>
+                    <li>Free international ATM withdrawals</li>
+                    <li>Priority customer support 24/7</li>
+                    <li>2% cashback on dining and shopping</li>
+                    <li>Travel insurance up to $5,000</li>
+                    <li>Airport lounge access (4 visits/year)</li>
+                    <li>Enhanced fraud protection</li>
+                </ul>
+                <button class="btn btn-signup">Apply Now</button>
+            </div>
+            
+            <div class="card gold">
+                <h3>Gold Card</h3>
+                <div class="price">PKR 2,500/year</div>
+                <ul>
+                    <li>All Premium features</li>
+                    <li>Unlimited airport lounge access</li>
+                    <li>Up to 3% cashback on special events</li>
+                    <li>Dedicated relationship manager</li>
+                    <li>Comprehensive travel insurance</li>
+                    <li>Exclusive event invitations</li>
+                    <li>Higher transaction limits</li>
+                    <li>Premium concierge service</li>
+                </ul>
+                <button class="btn btn-signup">Apply Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews & Mission Page -->
+    <section class="page-content" id="reviews-page">
+        <h1 class="page-title">Customer Reviews</h1>
+        
+        <div class="reviews-container">
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">AS</div>
+                    <div class="review-info">
+                        <h4>Ahmed Siddiqui</h4>
+                        <p>Karachi</p>
+                    </div>
+                </div>
+                <div class="review-text">
+                    "I've been using PakDebit for six months now, and I'm extremely satisfied. The Riba-free approach was what attracted me initially, but the excellent customer service and low international transfer fees have made me a loyal customer."
+                </div>
+            </div>
+            
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">FK</div>
+                    <div class="review-info">
+                        <h4>Fatima Khan</h4>
+                        <p>Lahore</p>
+                    </div>
+                </div>
+                <div class="review-text">
+                    "As a small business owner, PakDebit has been a game-changer for me. The business account features are fantastic, and I've saved so much on international transaction fees compared to my previous bank. Highly recommended!"
+                </div>
+            </div>
+            
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">MR</div>
+                    <div class="review-info">
+                        <h4>Muhammad Raza</h4>
+                        <p>Islamabad</p>
+                    </div>
+                </div>
+                <div class="review-text">
+                    "The Gold card is worth every rupee! The cashback during Eid was incredible, and the airport lounge access has made my business travels much more comfortable. PakDebit understands what premium customers need."
+                </div>
+            </div>
+            
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">SA</div>
+                    <div class="review-info">
+                        <h4>Sara Ahmed</h4>
+                        <p>Rawalpindi</p>
+                    </div>
+                </div>
+                <div class="review-text">
+                    "I was hesitant to switch banks, but PakDebit made the process so smooth. Their mobile app is user-friendly, and I love that I can track all my expenses in one place. The Riba-free savings account is exactly what I was looking for."
+                </div>
+            </div>
+            
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">TA</div>
+                    <div class="review-info">
+                        <h4>Tariq Ali</h4>
+                        <p>Faisalabad</p>
+                    </div>
+                </div>
+                <div class="review-text">
+                    "The international transfer service is fantastic! I send money to my son studying abroad, and with PakDebit, the transfers are not only cheaper but also faster than before. The transparency in fees is much appreciated."
+                </div>
+            </div>
+            
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">NZ</div>
+                    <div class="review-info">
+                        <h4>Nadia Zafar</h4>
+                        <p>Multan</p>
+                    </div>
+                </div>
+                <div class="review-text">
+                    "As someone who values ethical banking, PakDebit has been a blessing. It's refreshing to have a bank that aligns with my values while offering competitive services. The customer support team is always helpful and knowledgeable."
+                </div>
+            </div>
+        </div>
+        
+        <div class="mission-section">
+            <h2>Our Future Mission</h2>
+            <p>At PakDebit, our mission extends beyond providing banking services. We envision a future where every Pakistani has access to ethical, transparent, and innovative financial solutions that empower them to achieve their dreams.</p>
+            <p>Over the next five years, we aim to revolutionize banking all over Pakistan by:</p>
+            <ul>
+                <li>Expanding our branch network to 100+ cities across Pakistan</li>
+                <li>Launching specialized products for students, women entrepreneurs, and senior citizens</li>
+                <li>Introducing Pakistan's first completely digital Riba-free investment platform</li>
+                <li>Partnering with international Islamic banks to offer seamless global banking</li>
+                <li>Developing financial literacy programs to empower communities</li>
+                <li>Achieving carbon neutrality in our operations by 2028</li>
+                <li>Becoming the leading digital banking platform in Pakistan</li>
+            </ul>
+            <p>We believe that by staying true to our values and continuously innovating, we can play a significant role in Pakistan's economic growth and financial inclusion, revolutionizing banking for generations to come.</p>
+        </div>
+    </section>
+
+    <!-- Auth Modal -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <div class="auth-tabs">
+                <div class="auth-tab active" id="loginTab">Login</div>
+                <div class="auth-tab" id="signupTab">Sign Up</div>
+            </div>
+            <form class="auth-form active" id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Username</label>
+                    <input type="text" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn-submit">Login to Your Account</button>
+                <div id="loginMessage" style="margin-top: 1rem; text-align: center; color: var(--accent-gold);"></div>
+            </form>
+            <form class="auth-form" id="signupForm">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPhone">Phone Number</label>
+                    <input type="tel" id="signupPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirmPassword">Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" required>
+                </div>
+                <button type="submit" class="btn-submit">Create Your Account</button>
+                <div id="signupMessage" style="margin-top: 1rem; text-align: center; color: var(--accent-gold);"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>PakDebit</h3>
+                <ul>
+                    <li><a href="#" class="nav-link" data-page="about">About Us</a></li>
+                    <li><a href="#careers">Careers</a></li>
+                    <li><a href="#press">Press</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#personal">Personal Banking</a></li>
+                    <li><a href="#business">Business Banking</a></li>
+                    <li><a href="#international">International Transfers</a></li>
+                    <li><a href="#investments">Investments</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#help">Help Center</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#security">Security</a></li>
+                    <li><a href="#complaints">Complaints</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#terms">Terms & Conditions</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#cookies">Cookie Policy</a></li>
+                    <li><a href="#disclaimer">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 PakDebit. All rights reserved. State Bank of Pakistan Licensed.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Password generator function
+        function generateSecurePassword(length = 12) {
+            const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?";
+            let password = "";
+            
+            // Ensure at least one of each required character type
+            password += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)]; // uppercase
+            password += "abcdefghijklmnopqrstuvwxyz"[Math.floor(Math.random() * 26)]; // lowercase
+            password += "0123456789"[Math.floor(Math.random() * 10)]; // digit
+            password += "!@#$%^&*()_+-=[]{}|;:,.<>?"[Math.floor(Math.random() * 23)]; // special
+            
+            // Fill the rest with random characters
+            for (let i = 4; i < length; i++) {
+                password += charset[Math.floor(Math.random() * charset.length)];
+            }
+            
+            // Shuffle the password to randomize character positions
+            return password.split('').sort(() => 0.5 - Math.random()).join('');
+        }
+
+        // Initialize accounts with secure random passwords
+        function initializeAccounts() {
+            if (!localStorage.getItem('pakdebitAccounts')) {
+                const accountNames = [
+                    "Ali Hasan", "Rafay Amir", "Haseeb Ali", "Ayaan Zamir", "Tayyab Jutt",
+                    "Rehan Sajid", "Hashir Ahmed", "Saim Karim", "Fahad Umer", "Zain Khan",
+                    "Bilal Ahmed", "Usman Malik", "Kamran Ali", "Saad Khan", "Haris Raza",
+                    "Waleed Akhtar", "Farhan Sheikh", "Baber Azam", "Shahid Afridi", "Imran Khan",
+                    "Wasim Akram", "Shoaib Malik", "Mohammad Hafeez", "Sarfaraz Ahmed", "Babar Sultan",
+                    "Azhar Mahmood", "Abdul Qadir", "Saeed Anwar", "Inzamam Ul Haq", "Waqar Younis",
+                    "Saqlain Mushtaq", "Mohammad Yousuf", "Younis Khan", "Misbah Ul Haq", "Shadab Khan",
+                    "Hasan Ali", "Fakhar Zaman", "Imad Wasim", "Mohammad Amir", "Asif Ali"
+                ];
+                
+                const accounts = accountNames.map(name => {
+                    const username = name;
+                    const password = generateSecurePassword();
+                    const email = `${name.toLowerCase().replace(/\s+/g, '.')}@example.com`;
+                    const phone = `0300${Math.floor(1000000 + Math.random() * 9000000)}`;
+                    
+                    return { username, password, email, phone };
+                });
+                
+                localStorage.setItem('pakdebitAccounts', JSON.stringify(accounts));
+                
+                // Log first few accounts for testing (remove in production)
+                console.log("Sample accounts created with secure passwords:");
+                accounts.slice(0, 3).forEach(acc => {
+                    console.log(`Username: ${acc.username}, Password: ${acc.password}`);
+                });
+            }
+        }
+
+        // Loading screen functionality
+        function initLoadingScreen() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const progressBar = document.getElementById('loadingProgress');
+            let progress = 0;
+            
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress > 100) progress = 100;
+                progressBar.style.width = `${progress}%`;
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loadingScreen.classList.add('hidden');
+                        // Initialize the rest of the website
+                        initScrollToTop();
+                        initScrollAnimations();
+                        createParticles();
+                    }, 500);
+                }
+            }, 200);
+        }
+
+        // Create particle background
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 10 + 5;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 15;
+                const duration = Math.random() * 10 + 15;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Scroll to top functionality
+        function initScrollToTop() {
+            const scrollButton = document.getElementById('scrollToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    scrollButton.classList.add('active');
+                } else {
+                    scrollButton.classList.remove('active');
+                }
+            });
+            
+            scrollButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Scroll animation for elements
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe service cards
+            document.querySelectorAll('.service-card').forEach(card => {
+                observer.observe(card);
+            });
+            
+            // Observe review cards
+            document.querySelectorAll('.review-card').forEach(card => {
+                observer.observe(card);
+            });
+            
+            // Observe cards on pricing page
+            document.querySelectorAll('.card').forEach(card => {
+                observer.observe(card);
+            });
+            
+            // Observe mission section
+            const missionSection = document.querySelector('.mission-section');
+            if (missionSection) {
+                observer.observe(missionSection);
+            }
+        }
+
+        // Page Navigation
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page-content');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetPage = link.getAttribute('data-page');
+                
+                // Hide all pages
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // Show target page
+                document.getElementById(`${targetPage}-page`).classList.add('active');
+                
+                // Update active nav link
+                navLinks.forEach(navLink => {
+                    navLink.classList.remove('active');
+                });
+                link.classList.add('active');
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            });
+        });
+
+        // Auth Modal Functionality
+        const authModal = document.getElementById('authModal');
+        const loginBtn = document.getElementById('loginBtn');
+        const signupBtn = document.getElementById('signupBtn');
+        const closeModal = document.getElementById('closeModal');
+        const loginTab = document.getElementById('loginTab');
+        const signupTab = document.getElementById('signupTab');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const loginMessage = document.getElementById('loginMessage');
+        const signupMessage = document.getElementById('signupMessage');
+
+        // Open modal when login or signup buttons are clicked
+        loginBtn.addEventListener('click', () => {
+            authModal.style.display = 'flex';
+            switchToLogin();
+        });
+
+        signupBtn.addEventListener('click', () => {
+            authModal.style.display = 'flex';
+            switchToSignup();
+        });
+
+        // Close modal when X is clicked
+        closeModal.addEventListener('click', () => {
+            authModal.style.display = 'none';
+            loginMessage.textContent = '';
+            signupMessage.textContent = '';
+        });
+
+        // Close modal when clicking outside the modal content
+        window.addEventListener('click', (e) => {
+            if (e.target === authModal) {
+                authModal.style.display = 'none';
+                loginMessage.textContent = '';
+                signupMessage.textContent = '';
+            }
+        });
+
+        // Switch between login and signup tabs
+        loginTab.addEventListener('click', switchToLogin);
+        signupTab.addEventListener('click', switchToSignup);
+
+        function switchToLogin() {
+            loginTab.classList.add('active');
+            signupTab.classList.remove('active');
+            loginForm.classList.add('active');
+            signupForm.classList.remove('active');
+            loginMessage.textContent = '';
+            signupMessage.textContent = '';
+        }
+
+        function switchToSignup() {
+            signupTab.classList.add('active');
+            loginTab.classList.remove('active');
+            signupForm.classList.add('active');
+            loginForm.classList.remove('active');
+            loginMessage.textContent = '';
+            signupMessage.textContent = '';
+        }
+
+        // Form submission handling
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Get accounts from localStorage
+            const accounts = JSON.parse(localStorage.getItem('pakdebitAccounts'));
+            
+            // Check if user exists and password matches
+            const user = accounts.find(acc => acc.username === username && acc.password === password);
+            
+            if (user) {
+                loginMessage.textContent = 'Login successful! Redirecting...';
+                loginMessage.style.color = 'var(--accent-gold)';
+                setTimeout(() => {
+                    authModal.style.display = 'none';
+                    loginMessage.textContent = '';
+                    alert(`Welcome back, ${user.username}!`);
+                }, 1500);
+            } else {
+                loginMessage.textContent = 'Invalid username or password!';
+                loginMessage.style.color = 'var(--accent-gold)';
+            }
+        });
+
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const phone = document.getElementById('signupPhone').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                signupMessage.textContent = 'Passwords do not match!';
+                signupMessage.style.color = 'var(--accent-gold)';
+                return;
+            }
+            
+            // Get accounts from localStorage
+            const accounts = JSON.parse(localStorage.getItem('pakdebitAccounts'));
+            
+            // Check if username already exists
+            if (accounts.find(acc => acc.username === name)) {
+                signupMessage.textContent = 'Username already exists!';
+                signupMessage.style.color = 'var(--accent-gold)';
+                return;
+            }
+            
+            // Add new account
+            const newAccount = {
+                username: name,
+                password: password,
+                email: email,
+                phone: phone
+            };
+            
+            accounts.push(newAccount);
+            localStorage.setItem('pakdebitAccounts', JSON.stringify(accounts));
+            
+            signupMessage.textContent = 'Account created successfully! You can now login.';
+            signupMessage.style.color = 'var(--accent-gold)';
+            
+            // Clear form
+            document.getElementById('signupName').value = '';
+            document.getElementById('signupEmail').value = '';
+            document.getElementById('signupPhone').value = '';
+            document.getElementById('signupPassword').value = '';
+            document.getElementById('signupConfirmPassword').value = '';
+            
+            // Switch to login after a delay
+            setTimeout(() => {
+                switchToLogin();
+            }, 2000);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add click handlers for card application buttons
+        document.querySelectorAll('.card .btn-signup').forEach(button => {
+            button.addEventListener('click', function() {
+                const cardType = this.closest('.card').classList[1];
+                const accounts = JSON.parse(localStorage.getItem('pakdebitAccounts'));
+                const currentUser = accounts.find(acc => acc.username === document.getElementById('loginEmail').value);
+                
+                if (currentUser) {
+                    alert(`Thank you ${currentUser.username}! Your application for the ${cardType.charAt(0).toUpperCase() + cardType.slice(1)} card has been received. We will process it within 2-3 business days.`);
+                } else {
+                    document.getElementById('signupBtn').click();
+                    setTimeout(() => {
+                        alert('Please create an account first to apply for a card.');
+                    }, 500);
+                }
+            });
+        });
+
+        // Initialize the website
+        initializeAccounts();
+        initLoadingScreen();
+    </script>
+</body>
+</html>
